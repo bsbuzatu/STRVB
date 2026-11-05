@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0B0A09"/>
+  <g fill="#D9AD4F">
+    <!-- romb cu trepte, ca motivul central din logo -->
+    <path d="M32 9 L37 14 L37 19 L42 19 L42 24 L47 24 L47 29 L52 29 L55 32 L52 35 L47 35 L47 40 L42 40 L42 45 L37 45 L37 50 L32 55 L27 50 L27 45 L22 45 L22 40 L17 40 L17 35 L12 35 L9 32 L12 29 L17 29 L17 24 L22 24 L22 19 L27 19 L27 14 Z"/>
+  </g>
+  <!-- miezul negru cu rombul mic auriu -->
+  <path d="M32 20 L44 32 L32 44 L20 32 Z" fill="#0B0A09"/>
+  <path d="M32 26 L38 32 L32 38 L26 32 Z" fill="#D9AD4F"/>
+  <!-- două crestături roșii, cusătura -->
+  <rect x="30" y="4" width="4" height="4" fill="#B8372B"/>
+  <rect x="30" y="56" width="4" height="4" fill="#B8372B"/>
+</svg>
