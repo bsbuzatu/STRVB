@@ -3,35 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#102E50">
-<title>Trupa</title>
+<meta name="theme-color" content="#0B0A09">
+<title>STRVB</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,600..700,30&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
-     Paleta: bleumarin #102E50, galben #F5C45E, portocaliu #E78B48, roșu #BE3D2A
-     galben = acțiune și „aici ești” · portocaliu = repetiție · roșu = concert și „nu pot”
+     STRVB — negru și auriu, cu o singură cusătură roșie
+     auriu = acțiune, „aici ești”, repetiție · roșu = concert și „nu pot” · ivoriu = întâlnire
      ============================================================ */
   :root{
     color-scheme:dark;
-    --bg:#102E50;
-    --card:#183B63;
-    --card-hi:#21497A;
-    --inset:#0B2341;
-    --line:rgba(255,255,255,.10);
-    --text:#F8F4EA;
-    --muted:#AEBDD0;
-    --faint:#8397B1;
-    --yellow:#F5C45E;
-    --orange:#E78B48;
-    --red:#BE3D2A;
-    --ink:#102E50;                 /* text pe galben / portocaliu */
-    /* membrii: pasteluri, separate de culorile cu sens de mai sus */
-    --k:#F7E3A1; --a:#7FC4F0; --n:#8ED3A0; --r:#F4A7B9; --b:#C4A7F2;
-    --display:'Bricolage Grotesque','Instrument Sans',system-ui,sans-serif;
+    --bg:#0B0A09;
+    --card:#161411;
+    --card-hi:#201C17;
+    --inset:#070605;
+    --line:rgba(232,200,120,.14);
+    --text:#F3EBD9;
+    --muted:#B3A68C;
+    --faint:#7B7161;
+    --gold:#D9AD4F;
+    --gold-light:#EBCB7A;
+    --gold-deep:#8F6E2A;
+    --red:#B8372B;
+    --red-light:#E05A4C;
+    --ivory:#E7DCC3;
+    --ink:#12100C;                 /* text pe auriu / ivoriu */
+    /* membrii: aceeași familie de metale și pământ, mereu cu inițiala în bulină */
+    --k:#E8C56A; --a:#F0E6D2; --n:#D08A4A; --r:#D65B4B; --b:#A8AFBB;
+    --display:'Fraunces',Georgia,'Times New Roman',serif;
     --sans:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
     --nav-h:68px;
+    /* cusătură în cruciuliță: romburi roșii, cruci aurii */
+    --cusatura:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='21' shape-rendering='crispEdges'%3E%3Cpath fill='%23B8372B' d='M15 0h3v3h-3zM12 3h3v3h-3zM18 3h3v3h-3zM9 6h3v3h-3zM21 6h3v3h-3zM6 9h3v3h-3zM24 9h3v3h-3zM9 12h3v3h-3zM21 12h3v3h-3zM12 15h3v3h-3zM18 15h3v3h-3zM15 18h3v3h-3zM15 9h3v3h-3zM33 0h3v3h-3zM33 18h3v3h-3z'/%3E%3Cpath fill='%23D9AD4F' d='M15 6h3v3h-3zM12 9h3v3h-3zM18 9h3v3h-3zM15 12h3v3h-3zM33 6h3v3h-3zM33 9h3v3h-3zM33 12h3v3h-3zM30 9h3v3h-3zM0 9h3v3h-3z'/%3E%3C/svg%3E");
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
@@ -42,36 +47,38 @@
     -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
     padding-top:env(safe-area-inset-top,0px);
   }
-  h1,h2,h3{font-family:var(--display);margin:0;line-height:1.1;letter-spacing:-.01em}
-  h1{font-size:30px;font-weight:800}
-  h2{font-size:19px;font-weight:700}
+  h1,h2,h3{font-family:var(--display);margin:0;line-height:1.1;letter-spacing:-.005em;font-variation-settings:"SOFT" 30}
+  h1{font-size:32px;font-weight:600;color:var(--gold-light)}
+  h2{font-size:21px;font-weight:600;color:var(--gold-light)}
   p{margin:0}
   button{font:inherit;color:inherit;cursor:pointer;border:none;background:none;padding:0}
   input,select,textarea{font:inherit;color:inherit}
   a{color:inherit}
   svg{display:block;flex:0 0 auto}
-  :focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
   /* ---------- piese de bază ---------- */
-  .mark{display:grid;grid-template-rows:5fr 3.5fr 3fr;width:26px;height:26px;border-radius:8px;overflow:hidden;flex:0 0 auto}
-  .mark i:nth-child(1){background:var(--yellow)} .mark i:nth-child(2){background:var(--orange)} .mark i:nth-child(3){background:var(--red)}
-  .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:24px;
+    letter-spacing:.14em;color:var(--gold);font-variation-settings:"SOFT" 30}
+  .brand .romb{width:12px;height:12px;background:var(--gold);transform:rotate(45deg);border-radius:2px;flex:0 0 auto;margin-right:2px}
+  .cusatura{height:21px;background:var(--cusatura) repeat-x center;opacity:.9}
 
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--yellow);color:var(--ink);
-    border-radius:14px;padding:13px 18px;font-weight:700;font-size:15.5px;width:100%;transition:transform .12s,filter .12s}
-  .btn:hover{filter:brightness(1.06)} .btn:active{transform:scale(.985)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:var(--ink);
+    border-radius:12px;padding:13px 18px;font-weight:700;font-size:15.5px;width:100%;transition:transform .12s,filter .12s}
+  .btn:hover{filter:brightness(1.07)} .btn:active{transform:scale(.985)}
   .btn[disabled]{opacity:.55;cursor:default}
-  .btn.ghost{background:rgba(255,255,255,.07);color:var(--text)}
-  .btn.ghost:hover{background:rgba(255,255,255,.11);filter:none}
+  .btn.ghost{background:transparent;color:var(--gold-light);box-shadow:inset 0 0 0 1.5px var(--line)}
+  .btn.ghost:hover{background:rgba(232,200,120,.06);filter:none}
   .text-btn{color:var(--muted);font-size:14px;font-weight:600;padding:8px 6px;border-radius:8px}
-  .text-btn:hover{color:var(--text)}
+  .text-btn:hover{color:var(--gold-light)}
 
   label.fld,.fld-label{display:block;font-size:13.5px;font-weight:600;color:var(--muted);margin:0 0 6px}
   label.fld small{font-weight:400;color:var(--faint)}
-  .control{width:100%;background:var(--inset);border:1.5px solid transparent;border-radius:12px;
+  .control{width:100%;background:var(--inset);border:1.5px solid rgba(232,200,120,.12);border-radius:10px;
     padding:12px 13px;font-size:16px;line-height:1.3}
   .control::placeholder{color:var(--faint)}
-  .control:focus{outline:none;border-color:var(--yellow)}
+  .control:focus{outline:none;border-color:var(--gold)}
+  .control:disabled{opacity:.55;cursor:not-allowed}
   textarea.control{resize:vertical;line-height:1.55}
   .err{color:#FFB3A3;font-size:14px;margin-top:10px}
   .err:empty{display:none}
@@ -85,44 +92,45 @@
   /* ---------- login ---------- */
   .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
   .login-card{width:100%;max-width:360px}
-  .login-card .brand{font-size:34px;gap:14px;margin-bottom:6px}
-  .login-card .mark{width:38px;height:38px;border-radius:11px}
-  .login-sub{color:var(--muted);margin-bottom:26px}
+  .login-card .brand{font-size:38px;gap:16px;margin-bottom:4px}
+  .login-card .brand .romb{width:16px;height:16px}
+  .login-card .cusatura{margin:14px 0 22px}
+  .login-sub{color:var(--muted);margin-bottom:22px}
   .login-card .fld{margin-top:16px}
   .login-card .btn{margin-top:22px}
 
   /* ---------- cadru ---------- */
   .app{max-width:720px;margin:0 auto;padding:0 16px calc(var(--nav-h) + 40px + env(safe-area-inset-bottom,0px))}
-  header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0 8px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0 12px}
   .who{display:flex;align-items:center;gap:2px}
   .chip-user{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600}
 
-  nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;
-    padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));
-    background:rgba(11,35,65,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
-  nav.tabs button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 4px;border-radius:14px;
-    color:var(--muted);font-size:12.5px;font-weight:600;line-height:1.2}
-  nav.tabs button.active{background:var(--yellow);color:var(--ink)}
+  nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;
+    padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));
+    background:rgba(11,10,9,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+  nav.tabs button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 2px;border-radius:12px;
+    color:var(--muted);font-size:11.5px;font-weight:600;line-height:1.2;white-space:nowrap}
+  nav.tabs button.active{background:var(--gold);color:var(--ink)}
 
   section{display:none} section.active{display:block}
-  .page-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin:18px 0 18px}
-  .tag{font-size:12.5px;font-weight:600;border-radius:999px;padding:3px 10px;background:rgba(255,255,255,.08);color:var(--muted)}
-  .tag.edit{background:var(--yellow);color:var(--ink)}
-  .count{color:var(--faint);font-family:var(--display);font-weight:700;font-size:22px}
+  .page-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin:16px 0 18px}
+  .tag{font-size:12.5px;font-weight:600;border-radius:999px;padding:3px 10px;box-shadow:inset 0 0 0 1px var(--line);color:var(--muted)}
+  .tag.edit{background:var(--gold);color:var(--ink);box-shadow:none}
+  .count{color:var(--faint);font-family:var(--display);font-weight:600;font-size:24px}
 
   .block{margin-bottom:34px}
-  .card{background:var(--card);border-radius:20px;padding:18px;margin-bottom:34px}
+  .card{background:var(--card);border-radius:16px;padding:18px;margin-bottom:34px;box-shadow:inset 0 0 0 1px rgba(232,200,120,.08)}
 
   /* ---------- panou: următoarea repetiție ---------- */
-  .hero{background:var(--yellow);color:var(--ink);border-radius:24px;padding:20px 20px 18px;margin-bottom:34px}
+  .hero{background:var(--gold);color:var(--ink);border-radius:18px;padding:20px 20px 18px;margin-bottom:34px}
   .hero-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13.5px;font-weight:600}
-  .hero-rel{background:var(--ink);color:var(--yellow);border-radius:999px;padding:3px 11px;white-space:nowrap}
-  .hero-date{font-family:var(--display);font-weight:800;font-size:clamp(34px,10.5vw,52px);line-height:1;letter-spacing:-.03em;margin:16px 0 6px}
+  .hero-rel{background:var(--ink);color:var(--gold-light);border-radius:999px;padding:3px 11px;white-space:nowrap}
+  .hero-date{font-family:var(--display);font-weight:600;font-size:clamp(34px,10.5vw,52px);line-height:1;letter-spacing:-.02em;margin:16px 0 6px;font-variation-settings:"SOFT" 30}
   .hero-meta{font-size:16px;font-weight:500}
   .hero-abs{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:16px;background:var(--ink);color:var(--text);
-    border-radius:16px;padding:7px 13px 7px 9px;font-size:14px;font-weight:500}
-  .hero-abs.ok{background:rgba(16,46,80,.1);color:var(--ink);padding-left:13px}
-  .hero.empty{background:var(--card);color:var(--muted)}
+    border-radius:14px;padding:7px 13px 7px 9px;font-size:14px;font-weight:500}
+  .hero-abs.ok{background:rgba(18,16,12,.1);color:var(--ink);padding-left:13px}
+  .hero.empty{background:var(--card);color:var(--muted);box-shadow:inset 0 0 0 1px rgba(232,200,120,.08)}
   .hero.empty .hero-top{color:var(--text)}
   .hero.empty p{margin:12px 0 16px}
 
@@ -133,42 +141,45 @@
 
   /* ---------- calendar ---------- */
   .month-nav{display:flex;align-items:center;justify-content:space-between;margin:0 0 6px}
-  .month-nav .mlabel{font-family:var(--display);font-weight:700;font-size:17px}
-  .nav-mini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--text);background:rgba(255,255,255,.07)}
-  .nav-mini:hover{background:rgba(255,255,255,.13)}
+  .month-nav .mlabel{font-family:var(--display);font-weight:600;font-size:18px;color:var(--gold-light)}
+  .nav-mini{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--gold-light);box-shadow:inset 0 0 0 1.5px var(--line)}
+  .nav-mini:hover{background:rgba(232,200,120,.08)}
   .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
   .dow{text-align:center;font-size:12px;color:var(--faint);font-weight:600;padding:4px 0}
-  .cell{min-height:70px;background:rgba(255,255,255,.045);border-radius:12px;padding:6px;
+  .cell{min-height:70px;background:var(--card);border-radius:10px;padding:6px;
     display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;min-width:0}
   .cell.empty{background:transparent}
   .cell.past{opacity:.38}
   .cell .dnum{font-size:13px;font-weight:600;color:var(--muted);line-height:1}
-  .cell.today{box-shadow:inset 0 0 0 2px var(--yellow)}
-  .cell.today .dnum{color:var(--yellow)}
+  .cell.today{box-shadow:inset 0 0 0 2px var(--gold)}
+  .cell.today .dnum{color:var(--gold-light)}
   button.cell{transition:background .12s}
-  button.cell:hover{background:rgba(255,255,255,.1)}
+  button.cell:hover{background:var(--card-hi)}
   .cell.mine,button.cell.mine:hover{background:var(--red)}
   .cell.mine .dnum{color:#fff}
   .nupot{margin-top:auto;font-size:11.5px;font-weight:700;color:#fff;line-height:1.1}
   .dots{display:flex;flex-wrap:wrap;gap:2px;margin-top:auto}
-  .evpill{font-size:10.5px;font-weight:700;padding:2px 5px;border-radius:5px;line-height:1.15;white-space:nowrap}
-  .evpill.rep{background:var(--orange);color:var(--ink)}
-  .evpill.con{background:var(--red);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.35)}
+  .evpill{font-size:10.5px;font-weight:700;padding:2px 5px;border-radius:4px;line-height:1.15;white-space:nowrap}
+  .evpill.rep{background:var(--gold);color:var(--ink)}
+  .evpill.con{background:var(--red);color:#fff}
+  .evpill.int{background:transparent;color:var(--ivory);box-shadow:inset 0 0 0 1.5px var(--ivory)}
 
   /* ---------- evenimente ---------- */
   .events-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
-  .ev{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:16px;padding:12px 14px;position:relative;overflow:hidden}
-  .ev::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--orange)}
+  .ev{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:12px;padding:12px 14px;position:relative;overflow:hidden}
+  .ev::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold)}
   .ev.con::before{background:var(--red)}
+  .ev.int::before{background:var(--ivory)}
   .ev .date{text-align:center;min-width:40px;margin-left:4px}
-  .ev .date .d{font-family:var(--display);font-weight:800;font-size:24px;line-height:1}
+  .ev .date .d{font-family:var(--display);font-weight:600;font-size:26px;line-height:1;color:var(--gold-light)}
+  .ev.con .date .d{color:var(--red-light)} .ev.int .date .d{color:var(--ivory)}
   .ev .date .m{font-size:12px;font-weight:600;color:var(--muted)}
   .ev .info{flex:1;min-width:0}
   .ev .info .t{font-weight:600}
   .ev .info .s{font-size:14px;color:var(--muted)}
   .ev .lipsa{display:flex;flex-wrap:wrap;gap:3px;justify-content:flex-end;max-width:66px}
   .empty-state{color:var(--muted);text-align:center;padding:28px 10px}
-  .warn{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--red);color:#fff;border-radius:12px;
+  .warn{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--red);color:#fff;border-radius:10px;
     padding:10px 13px;font-size:14px;font-weight:500;margin-top:12px}
   .warn:empty{display:none}
 
@@ -176,71 +187,85 @@
   .form{display:flex;flex-direction:column;gap:14px;margin-top:14px}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .row-bpm{display:grid;grid-template-columns:104px 1fr;gap:12px}
-  .seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--inset);border-radius:12px;padding:4px}
-  .seg label{position:relative;text-align:center;padding:9px 6px;border-radius:9px;font-weight:600;font-size:15px;color:var(--muted);cursor:pointer}
+  .seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;background:var(--inset);border-radius:10px;padding:4px;box-shadow:inset 0 0 0 1px rgba(232,200,120,.1)}
+  .seg label{position:relative;text-align:center;padding:9px 6px;border-radius:7px;font-weight:600;font-size:14.5px;color:var(--muted);cursor:pointer;line-height:1.2}
   .seg input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
-  .seg label:has(input:checked){background:var(--card-hi);color:var(--text)}
-  .seg label:has(input:focus-visible){outline:2px solid var(--yellow);outline-offset:2px}
+  .seg label:has(input:checked){background:var(--gold);color:var(--ink)}
+  .seg label:has(input:focus-visible){outline:2px solid var(--gold);outline-offset:2px}
+  .seg.vot label:has(input:checked){background:var(--card-hi);color:var(--gold-light);box-shadow:inset 0 0 0 1.5px var(--gold)}
 
-  /* ---------- piese ---------- */
+  /* ---------- piese / propuneri ---------- */
   .toolbar{display:grid;grid-template-columns:1fr auto;gap:10px;margin-bottom:22px}
   .toolbar .btn.ghost{width:auto}
   .songs{display:flex;flex-direction:column;gap:10px}
-  .song{background:var(--card);border-radius:20px;padding:18px 18px 10px}
+  .song{background:var(--card);border-radius:16px;padding:18px 18px 10px;box-shadow:inset 0 0 0 1px rgba(232,200,120,.08)}
   .song-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-  .song h3{font-size:21px;font-weight:700;overflow-wrap:anywhere}
+  .song h3{font-size:22px;font-weight:600;overflow-wrap:anywhere;color:var(--text)}
   .song .artist{color:var(--muted);margin-top:3px}
-  .bpm{flex:0 0 auto;font-size:13px;font-weight:700;border-radius:999px;padding:4px 10px;background:rgba(255,255,255,.08);white-space:nowrap}
+  .bpm{flex:0 0 auto;font-size:13px;font-weight:700;border-radius:999px;padding:4px 10px;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--gold-light);white-space:nowrap}
   .structura{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
-  .parte{font-size:13px;font-weight:600;padding:4px 9px;border-radius:8px;background:rgba(255,255,255,.08);color:var(--text);white-space:nowrap}
-  .parte.refren{background:var(--yellow);color:var(--ink)}
-  .parte.solo{background:transparent;box-shadow:inset 0 0 0 1.5px var(--orange);color:var(--orange)}
+  .parte{font-size:13px;font-weight:600;padding:4px 9px;border-radius:6px;background:var(--card-hi);color:var(--text);white-space:nowrap}
+  .parte.refren{background:var(--gold);color:var(--ink)}
+  .parte.solo{background:transparent;box-shadow:inset 0 0 0 1.5px var(--gold-deep);color:var(--gold-light)}
   .parte .mz{font-weight:800;margin-left:6px;opacity:.72;font-variant-numeric:tabular-nums}
-  .control:disabled{opacity:.55;cursor:not-allowed}
   .masura-info{font-size:12.5px;color:var(--muted);margin-top:8px}
-  .grup-h{display:flex;align-items:center;gap:10px;margin:6px 0 2px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-  .grup-h.concert{color:var(--yellow)}
-  .grup-h .nr{font-size:12px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--muted);background:rgba(255,255,255,.08);border-radius:999px;padding:2px 9px}
+  .grup-h{display:flex;align-items:center;gap:10px;margin:6px 0 2px;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .grup-h.concert{color:var(--gold-light)}
+  .grup-h .nr{font-size:12px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--muted);box-shadow:inset 0 0 0 1px var(--line);border-radius:999px;padding:2px 9px}
   .grup-h + .song{margin-top:4px}
-  .song .ord{display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:8px;background:var(--yellow);color:var(--ink);font-weight:800;font-size:13px;margin-right:10px;vertical-align:middle;font-variant-numeric:tabular-nums}
-  .masura-lock{font-size:13.5px;color:var(--muted);background:rgba(255,255,255,.06);border-radius:12px;padding:10px 12px;line-height:1.4}
-  .masura-lock b{color:var(--yellow)}
+  .song .ord{display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:6px;background:var(--gold);color:var(--ink);font-family:var(--sans);font-weight:800;font-size:13px;margin-right:10px;vertical-align:middle;font-variant-numeric:tabular-nums}
+  .masura-lock{font-size:13.5px;color:var(--muted);background:var(--inset);border-radius:10px;padding:10px 12px;line-height:1.4}
+  .masura-lock b{color:var(--gold-light)}
   .song-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
   .song-actions .spatiu{flex:1}
   .chip-btn{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600;
-    background:rgba(255,255,255,.08);text-decoration:none}
-  .chip-btn:hover{background:rgba(255,255,255,.13)}
+    background:var(--card-hi);text-decoration:none;color:var(--gold-light)}
+  .chip-btn:hover{background:#2A251E}
   .chip-btn.gol{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--muted)}
   .song.arhivata{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line)}
   .arh-info{font-size:13.5px;color:var(--faint);margin-top:10px}
   .arh-row{display:flex;flex-wrap:wrap;align-items:center;gap:2px 10px;border-top:1px solid var(--line);padding-top:10px}
   .arh-row .text-btn{color:#FFB3A3;padding-left:0}
 
+  /* propuneri */
+  .prop-meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;font-size:13.5px;color:var(--muted);margin-top:8px}
+  .prop-meta .bulina{width:17px;height:17px;font-size:10.5px}
+  .voturi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+  .vot-col{background:var(--inset);border-radius:10px;padding:9px 10px;min-height:66px}
+  .vot-col .lbl{display:flex;align-items:baseline;justify-content:space-between;gap:6px;font-size:12px;font-weight:700;color:var(--muted);line-height:1.2}
+  .vot-col .lbl b{font-family:var(--display);font-size:20px;font-weight:600;color:var(--gold-light);line-height:1}
+  .vot-col.da .lbl b{color:var(--gold-light)} .vot-col.nu .lbl b{color:var(--red-light)} .vot-col.mijloc .lbl b{color:var(--ivory)}
+  .vot-col .cine{display:flex;flex-wrap:wrap;gap:3px;margin-top:7px;min-height:17px}
+  .vot-col .cine .bulina{width:17px;height:17px;font-size:10.5px}
+  .votul-meu{margin-top:12px}
+  .votul-meu .fld-label{margin-bottom:6px}
+  .seg.vot label{font-size:13.5px;padding:8px 4px}
+
   /* ---------- ferestre ---------- */
-  dialog.sheet{border:none;border-radius:24px;background:var(--card);color:var(--text);padding:0;
-    width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 32px);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  dialog.sheet{border:none;border-radius:20px;background:var(--card);color:var(--text);padding:0;
+    width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 32px);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7),inset 0 0 0 1px rgba(232,200,120,.1)}
   dialog.sheet[open]{display:flex;flex-direction:column}
-  dialog.sheet::backdrop{background:rgba(6,18,34,.72)}
+  dialog.sheet::backdrop{background:rgba(0,0,0,.72)}
   .sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 20px 6px}
-  .sheet-head h2{font-size:22px;overflow-wrap:anywhere}
-  .sheet-x{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);flex:0 0 auto}
-  .sheet-x:hover{background:rgba(255,255,255,.14)}
+  .sheet-head h2{font-size:23px;overflow-wrap:anywhere}
+  .sheet-x{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px var(--line);flex:0 0 auto;color:var(--gold-light)}
+  .sheet-x:hover{background:rgba(232,200,120,.08)}
   .sheet-body{padding:14px 20px 20px;overflow-y:auto;flex:1 1 auto;display:flex;flex-direction:column;gap:14px}
   .sheet-foot{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:12px 20px calc(16px + env(safe-area-inset-bottom,0px))}
   .sheet-foot .btn.ghost{width:auto}
 
-  .seq{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--inset);border-radius:12px;padding:10px;min-height:54px}
+  .seq{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--inset);border-radius:10px;padding:10px;min-height:54px}
   .seq .gol{color:var(--faint);font-size:14px;padding:0 4px}
   .seq button.parte{font-size:14px;padding:7px 11px}
   .seq button.parte.sel{outline:2px solid var(--text);outline-offset:2px}
   .seq-tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .seq-tools button{border-radius:999px;padding:6px 12px;font-size:13.5px;font-weight:600;background:rgba(255,255,255,.08)}
+  .seq-tools button{border-radius:999px;padding:6px 12px;font-size:13.5px;font-weight:600;background:var(--card-hi);color:var(--gold-light)}
   .seq-tools button[disabled]{opacity:.35;cursor:default}
   .seq-tools .spatiu{flex:1}
   .paleta{display:flex;flex-wrap:wrap;gap:6px}
   .paleta button{border-radius:999px;padding:7px 12px;font-size:14px;font-weight:600;box-shadow:inset 0 0 0 1.5px var(--line)}
-  .paleta button:hover{background:rgba(255,255,255,.08)}
-  .paleta button::before{content:"+ ";color:var(--yellow)}
+  .paleta button:hover{background:var(--card-hi)}
+  .paleta button::before{content:"+ ";color:var(--gold)}
   .row-inline{display:grid;grid-template-columns:1fr auto;gap:8px}
   .row-inline .btn{width:auto;padding:0 16px}
 
@@ -249,30 +274,32 @@
   #lyricsText{min-height:46vh}
 
   .toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + 22px + env(safe-area-inset-bottom,0px));
-    transform:translateX(-50%) translateY(12px);background:var(--text);color:var(--ink);padding:10px 16px;border-radius:999px;
+    transform:translateX(-50%) translateY(12px);background:var(--gold);color:var(--ink);padding:10px 16px;border-radius:999px;
     font-size:14.5px;font-weight:600;opacity:0;pointer-events:none;transition:.22s;z-index:100;max-width:calc(100vw - 32px);text-align:center}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-  .config-warn{background:var(--red);color:#fff;border-radius:16px;padding:18px;margin:24px auto;max-width:560px;line-height:1.5}
+  .config-warn{background:var(--red);color:#fff;border-radius:14px;padding:18px;margin:24px auto;max-width:560px;line-height:1.5}
   .config-warn code{background:rgba(0,0,0,.25);padding:2px 6px;border-radius:6px;font-size:13.5px}
 
   /* ---------- ecrane mici: ferestrele urcă de jos ---------- */
   @media (max-width:639px){
-    dialog.sheet{margin:auto 0 0;width:100%;max-width:100%;border-radius:24px 24px 0 0;max-height:calc(100dvh - 28px - env(safe-area-inset-top,0px))}
+    dialog.sheet{margin:auto 0 0;width:100%;max-width:100%;border-radius:20px 20px 0 0;max-height:calc(100dvh - 28px - env(safe-area-inset-top,0px))}
     .cell{min-height:62px;padding:5px 4px}
     .grid{gap:4px}
     .bulina{width:16px;height:16px;font-size:10.5px}
     .bulina.lg{width:26px;height:26px;font-size:14px}
     .row2{grid-template-columns:1fr}
+    .voturi{gap:5px}
+    .vot-col{padding:8px}
   }
   /* ---------- ecrane mari: taburile stau sus ---------- */
   @media (min-width:640px){
     .app{padding-bottom:60px}
     nav.tabs{position:sticky;top:12px;bottom:auto;display:inline-grid;grid-auto-flow:column;grid-template-columns:none;
-      border:none;border-radius:18px;padding:5px;background:rgba(11,35,65,.9);margin:6px 0 4px}
-    nav.tabs button{flex-direction:row;gap:8px;padding:9px 16px;font-size:14.5px;border-radius:13px}
+      border:none;border-radius:14px;padding:5px;background:rgba(22,20,17,.94);box-shadow:inset 0 0 0 1px var(--line);margin:6px 0 4px}
+    nav.tabs button{flex-direction:row;gap:8px;padding:9px 16px;font-size:14.5px;border-radius:10px}
     .toast{bottom:28px}
-    h1{font-size:34px}
+    h1{font-size:36px}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -282,7 +309,8 @@
 <!-- LOGIN -->
 <div id="loginView" class="login-wrap" style="display:none">
   <div class="login-card">
-    <div class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>Trupa</div>
+    <div class="brand"><span class="romb" aria-hidden="true"></span>STRVB</div>
+    <div class="cusatura" aria-hidden="true"></div>
     <p class="login-sub">Alege-ți numele și scrie parola.</p>
     <label class="fld" for="userSel">Cine ești</label>
     <select id="userSel" class="control"></select>
@@ -296,12 +324,13 @@
 <!-- APP -->
 <div id="appView" class="app" style="display:none">
   <header class="top">
-    <div class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>Trupa</div>
+    <div class="brand"><span class="romb" aria-hidden="true"></span>STRVB</div>
     <div class="who">
       <span class="chip-user"><span class="bulina lg" id="meDot"></span><span id="meName">—</span></span>
       <button class="text-btn" id="logoutBtn" style="margin-left:6px">Ieși</button>
     </div>
   </header>
+  <div class="cusatura" aria-hidden="true"></div>
 
   <nav class="tabs" aria-label="Secțiuni">
     <button data-view="home" class="active">
@@ -310,6 +339,9 @@
     <button data-view="songs">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
       Piese</button>
+    <button data-view="props">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg>
+      Propuneri</button>
     <button data-view="cal">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
       Calendarul tău</button>
@@ -334,6 +366,7 @@
       <div class="legend pastile">
         <span class="it"><span class="evpill rep">Rep</span> repetiție</span>
         <span class="it"><span class="evpill con">Conc</span> concert</span>
+        <span class="it"><span class="evpill int">Înt</span> întâlnire</span>
       </div>
     </div>
 
@@ -353,6 +386,16 @@
       <button class="btn ghost" id="archToggle">Arhivă</button>
     </div>
     <div id="songsList" class="songs"></div>
+  </section>
+
+  <!-- PROPUNERI -->
+  <section id="view-props">
+    <div class="page-head"><h1 id="propsHead">Propuneri</h1><span class="count" id="propsCount"></span></div>
+    <div class="toolbar">
+      <button class="btn" id="openAddProp">Propune o piesă</button>
+      <button class="btn ghost" id="propArchToggle">Arhivă</button>
+    </div>
+    <div id="propsList" class="songs"></div>
   </section>
 
   <!-- CALENDARUL TĂU -->
@@ -377,6 +420,7 @@
         <div class="seg" role="radiogroup" aria-label="Tip">
           <label><input type="radio" name="evType" value="repetitie" checked>Repetiție</label>
           <label><input type="radio" name="evType" value="concert">Concert</label>
+          <label><input type="radio" name="evType" value="intalnire">Întâlnire</label>
         </div>
         <div>
           <label class="fld" for="evDate">Data</label>
@@ -468,6 +512,43 @@
   </div>
 </dialog>
 
+<!-- FEREASTRĂ: propune / editează propunere -->
+<dialog class="sheet" id="propDlg" aria-labelledby="propDlgTitle">
+  <div class="sheet-head">
+    <h2 id="propDlgTitle">Propune o piesă</h2>
+    <button class="sheet-x" data-close aria-label="Închide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="sheet-body">
+    <div>
+      <label class="fld" for="pTitle">Piesă</label>
+      <input id="pTitle" class="control" placeholder="Valerie – Amy Winehouse">
+    </div>
+    <div>
+      <label class="fld" for="pLink">Link <small>(YouTube, Spotify, orice site)</small></label>
+      <input id="pLink" class="control" type="url" inputmode="url" placeholder="https://…">
+    </div>
+    <div class="row-bpm">
+      <div>
+        <label class="fld" for="pBpm">BPM <small>(opțional)</small></label>
+        <input id="pBpm" class="control" type="number" inputmode="numeric" min="30" max="300" placeholder="96">
+      </div>
+      <div>
+        <label class="fld" for="pKey">Gama <small>(opțional)</small></label>
+        <input id="pKey" class="control" placeholder="ex: Sol minor, Gm" maxlength="30">
+      </div>
+    </div>
+    <div class="err" id="propErr" role="alert"></div>
+    <div class="arh-row" id="propArchRow">
+      <button type="button" class="text-btn" id="propArchFromDlg">Arhivează propunerea</button>
+      <span class="hint">Nu se șterge. O găsești în Arhivă.</span>
+    </div>
+  </div>
+  <div class="sheet-foot">
+    <button class="btn ghost" data-close>Renunță</button>
+    <button class="btn" id="savePropBtn">Salvează propunerea</button>
+  </div>
+</dialog>
+
 <!-- FEREASTRĂ: versuri -->
 <dialog class="sheet" id="lyricsDlg" aria-labelledby="lyricsTitle">
   <div class="sheet-head">
@@ -546,6 +627,17 @@ const MONTHS_SHORT = ["ian","feb","mar","apr","mai","iun","iul","aug","sep","oct
 const DOW = ["L","Ma","Mi","J","V","S","D"];
 const WEEKDAYS = ["duminică","luni","marți","miercuri","joi","vineri","sâmbătă"];
 
+/* tipurile de programări: etichetă lungă, scurtă (în calendar) și clasa de culoare */
+const EV_TYPES = {
+  repetitie: { label:"Repetiție", short:"Rep",  cls:"rep" },
+  concert:   { label:"Concert",   short:"Conc", cls:"con" },
+  intalnire: { label:"Întâlnire", short:"Înt",  cls:"int" },
+};
+function evType(e){ return EV_TYPES[e.type] || EV_TYPES.repetitie; }
+
+/* voturile la propuneri */
+const VOTES = { da:"Îmi place", mijloc:"Cum zic și ceilalți", nu:"Prefer să nu" };
+
 const ICON_PLAY = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z"/></svg>`;
 
 /* ---------- init Firebase ---------- */
@@ -566,6 +658,7 @@ let seedTried = false;
 let homeMonth = startOfMonth(new Date());
 let calMonth  = startOfMonth(new Date());
 let showArchive = false;                       // tab Piese: repertoriu sau arhivă
+let proposals = [], showPropArchive = false, propEditId = null;   // tab Propuneri
 let editId = null, draft = [], selIdx = -1;    // fereastra de piesă
 let lyricsId = null;                           // fereastra de versuri
 
@@ -674,6 +767,11 @@ function subscribeAll(){
     if (me && currentView()==="songs") renderSongs();
   }, err=>console.warn("songs:",err));
 
+  onSnapshot(query(collection(db,"proposals"), orderBy("createdAt","desc")), snap=>{
+    proposals = snap.docs.map(d=>({id:d.id, ...d.data()}));
+    if (me && currentView()==="props") renderProps();
+  }, err=>console.warn("proposals:",err));
+
   onSnapshot(collection(db,"events"), snap=>{
     events = snap.docs.map(d=>({id:d.id, ...d.data()}));
     events.sort((a,b)=> (a.date||"").localeCompare(b.date||"") || (a.time||"").localeCompare(b.time||""));
@@ -708,13 +806,14 @@ async function seedSongs(){
    RENDER
    ============================================================ */
 function currentView(){ const a=document.querySelector("nav.tabs button.active"); return a?a.dataset.view:"home"; }
-function renderAll(){ renderHome(); renderSongs(); renderCalendar(); }
+function renderAll(){ renderHome(); renderSongs(); renderProps(); renderCalendar(); }
 function switchView(name){
   document.querySelectorAll("nav.tabs button").forEach(x=>x.classList.toggle("active", x.dataset.view===name));
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   $("#view-"+name).classList.add("active");
   if(name==="home") renderHome();
   if(name==="songs") renderSongs();
+  if(name==="props") renderProps();
   if(name==="cal") renderCalendar();
   window.scrollTo({top:0});
 }
@@ -793,9 +892,7 @@ function monthGrid(month, personal){
     if(ds===t) cls.push("today");
     if(past) cls.push("past");
     let inner = `<span class="dnum">${d}</span>`;
-    inner += evs.map(e=>e.type==="concert"
-      ? `<span class="evpill con" title="Concert">Conc</span>`
-      : `<span class="evpill rep" title="Repetiție">Rep</span>`).join("");
+    inner += evs.map(e=>{ const t=evType(e); return `<span class="evpill ${t.cls}" title="${t.label}">${t.short}</span>`; }).join("");
     if(personal){
       const mine = (availability[me]||[]).includes(ds);
       if(mine){ cls.push("mine"); inner += `<span class="nupot">nu pot</span>`; }
@@ -816,12 +913,12 @@ function monthGrid(month, personal){
 
 function evRow(e, withDel){
   const d=parseYmd(e.date);
-  const isC=e.type==="concert";
+  const t=evType(e);
   const sub = [WEEKDAYS[d.getDay()], e.time, e.title?esc(e.title):""].filter(Boolean).join(", ");
   const ab = withDel ? [] : absentOn(e.date);
-  return `<div class="ev ${isC?"con":"rep"}">
+  return `<div class="ev ${t.cls}">
     <div class="date"><div class="d">${d.getDate()}</div><div class="m">${MONTHS_SHORT[d.getMonth()]}</div></div>
-    <div class="info"><div class="t">${isC?"Concert":"Repetiție"}</div><div class="s">${sub}</div></div>
+    <div class="info"><div class="t">${t.label}</div><div class="s">${sub}</div></div>
     ${ab.length?`<div class="lipsa" aria-label="Nu pot: ${ab.map(firstName).join(", ")}">${ab.map(u=>bulina(u, MEMBERS[u].name+" nu poate")).join("")}</div>`:""}
     ${withDel?`<button class="text-btn" data-del="${esc(e.id)}">Șterge</button>`:""}
   </div>`;
@@ -1009,6 +1106,120 @@ async function saveLyrics(){
   finally{ btn.disabled=false; }
 }
 
+/* ---------- PROPUNERI ---------- */
+function renderProps(){
+  const act = proposals.filter(p=>!p.archived), arch = proposals.filter(p=>p.archived);
+  const list = $("#propsList");
+  $("#propArchToggle").textContent = showPropArchive ? "Înapoi la propuneri" : `Arhivă (${arch.length})`;
+  $("#openAddProp").style.display = showPropArchive ? "none" : "";
+  $("#view-props .toolbar").style.gridTemplateColumns = showPropArchive ? "1fr" : "";
+  $("#propArchToggle").style.width = showPropArchive ? "100%" : "";
+  if(showPropArchive){
+    $("#propsHead").textContent = "Arhivă";
+    $("#propsCount").textContent = arch.length || "";
+    list.innerHTML = arch.length ? arch.map(p=>propCard(p,true)).join("")
+      : `<div class="empty-state">Arhiva e goală. Propunerile arhivate apar aici, cu voturile lor.</div>`;
+  } else {
+    $("#propsHead").textContent = "Propuneri";
+    $("#propsCount").textContent = act.length || "";
+    list.innerHTML = act.length ? act.map(p=>propCard(p,false)).join("")
+      : `<div class="empty-state">Nicio propunere încă. Apasă „Propune o piesă”.</div>`;
+  }
+}
+function whenRo(ts){ const d=new Date(ts); return `${d.getDate()} ${MONTHS_SHORT[d.getMonth()]}`; }
+function propCard(p, archived){
+  const href=safeHref(p.link);
+  const votes=p.votes||{};
+  const who = k => ORDER.filter(u=>votes[u]===k);
+  const col = (k, cls) => { const w=who(k); return `<div class="vot-col ${cls}">
+      <div class="lbl"><span>${VOTES[k]}</span><b>${w.length}</b></div>
+      <div class="cine">${w.map(u=>bulina(u, MEMBERS[u].name+": "+VOTES[k])).join("")}</div></div>`; };
+  const meta = [p.key?esc(p.key):"", p.bpm?esc(p.bpm)+" BPM":""].filter(Boolean).join(" · ");
+  const by = p.proposedBy && MEMBERS[p.proposedBy] ? p.proposedBy : null;
+  const edited = p.editedBy && p.editedAt && p.editedBy!==p.proposedBy
+    ? `<span>modificată de ${esc(firstName(p.editedBy))}, ${whenRo(p.editedAt)}</span>`
+    : (p.editedBy && p.editedAt && p.editedAt - (p.createdAt||0) > 60000 ? `<span>modificată ${whenRo(p.editedAt)}</span>` : "");
+  const mine = votes[me]||"";
+  return `<article class="song${archived?" arhivata":""}" data-prop="${esc(p.id)}">
+    <div class="song-top">
+      <h3>${esc(p.title)}</h3>
+      ${meta?`<span class="bpm">${meta}</span>`:""}
+    </div>
+    <div class="prop-meta">
+      ${by?`${bulina(by)}<span>propusă de ${esc(firstName(by))}${p.createdAt?", "+whenRo(p.createdAt):""}</span>`:""}
+      ${edited}
+    </div>
+    <div class="voturi">${col("da","da")}${col("mijloc","mijloc")}${col("nu","nu")}</div>
+    ${archived ? "" : `<div class="votul-meu">
+      <div class="fld-label">Votul tău</div>
+      <div class="seg vot" role="radiogroup" aria-label="Votul tău">
+        ${Object.entries(VOTES).map(([k,l])=>`<label><input type="radio" name="vot-${esc(p.id)}" value="${k}"${mine===k?" checked":""}>${l}</label>`).join("")}
+      </div>
+    </div>`}
+    ${archived && p.archivedAt?`<div class="arh-info">Arhivată${p.archivedBy?" de "+esc(firstName(p.archivedBy)):""}, ${whenRo(p.archivedAt)} ${new Date(p.archivedAt).getFullYear()}</div>`:""}
+    <div class="song-actions">
+      ${href?`<a class="chip-btn" href="${esc(href)}" target="_blank" rel="noopener">${ICON_PLAY}Ascultă</a>`:""}
+      <span class="spatiu"></span>
+      ${archived
+        ? `<button class="text-btn" data-pact="restore" style="color:var(--gold-light)">Readu în propuneri</button>`
+        : `<button class="text-btn" data-pact="edit">Editează</button>`}
+    </div>
+  </article>`;
+}
+function openPropDlg(p){
+  propEditId = p ? p.id : null;
+  $("#propDlgTitle").textContent = p ? "Editează propunerea" : "Propune o piesă";
+  $("#savePropBtn").textContent = p ? "Salvează modificările" : "Salvează propunerea";
+  $("#pTitle").value = p?p.title||"":"";
+  $("#pLink").value = p?p.link||"":"";
+  $("#pBpm").value = p&&p.bpm?p.bpm:"";
+  $("#pKey").value = p?p.key||"":"";
+  $("#propErr").textContent="";
+  $("#propArchRow").style.display = p ? "" : "none";
+  $("#propDlg").showModal();
+}
+async function saveProp(){
+  const title=$("#pTitle").value.trim(), link=normalizeUrl($("#pLink").value), key=$("#pKey").value.trim();
+  const bpmRaw=$("#pBpm").value.trim();
+  const errEl=$("#propErr"); errEl.textContent="";
+  if(!title){ errEl.textContent="Scrie numele piesei."; $("#pTitle").focus(); return; }
+  if(link===null){ errEl.textContent="Linkul nu pare valid. Lipește adresa completă, de tipul https://…"; return; }
+  let bpm=null;
+  if(bpmRaw){
+    bpm=Math.round(Number(bpmRaw));
+    if(!Number.isFinite(bpm) || bpm<30 || bpm>300){ errEl.textContent="BPM trebuie să fie un număr între 30 și 300."; return; }
+  }
+  const btn=$("#savePropBtn"); btn.disabled=true;
+  try{
+    if(propEditId){
+      await updateDoc(doc(db,"proposals",propEditId), { title, link, key, bpm, editedBy:me, editedAt:Date.now() });
+      toast("Propunere salvată");
+    } else {
+      await addDoc(collection(db,"proposals"), { title, link, key, bpm, votes:{ [me]:"da" }, archived:false,
+        proposedBy:me, createdAt:Date.now(), editedBy:me, editedAt:Date.now() });
+      toast("Propunere adăugată");
+    }
+    $("#propDlg").close();
+  }catch(e){ errEl.textContent="Nu s-a salvat: "+(e.code||e.message); }
+  finally{ btn.disabled=false; }
+}
+async function voteProp(id, value){
+  try{ await updateDoc(doc(db,"proposals",id), { ["votes."+me]: value }); }
+  catch(e){ toast("Votul nu s-a salvat: "+(e.code||e.message)); }
+}
+async function archiveProp(p){
+  try{
+    await updateDoc(doc(db,"proposals",p.id), { archived:true, archivedBy:me, archivedAt:Date.now() });
+    toast("Propunere mutată în arhivă");
+  }catch(e){ toast("Nu s-a arhivat: "+(e.code||e.message)); }
+}
+async function restoreProp(p){
+  try{
+    await updateDoc(doc(db,"proposals",p.id), { archived:false, archivedBy:deleteField(), archivedAt:deleteField() });
+    toast("Readusă în propuneri");
+  }catch(e){ toast("Nu s-a readus: "+(e.code||e.message)); }
+}
+
 /* ============================================================
    ACTIONS
    ============================================================ */
@@ -1029,7 +1240,7 @@ async function addEvent(){
     await addDoc(collection(db,"events"),{ type, date, time, title,
       createdBy: firstName(me), createdAt: Date.now() });
     $("#evTime").value=$("#evTitle").value="";
-    toast(type==="concert"?"Concert adăugat":"Repetiție adăugată");
+    toast({repetitie:"Repetiție adăugată",concert:"Concert adăugat",intalnire:"Întâlnire adăugată"}[type]||"Adăugat");
   }catch(e){ errEl.textContent="Eroare: "+(e.code||e.message); }
 }
 async function deleteEvent(id){
@@ -1075,6 +1286,25 @@ function wireEvents(){
     else if(act==="restore") restoreSong(s);
   });
   $("#openAddSong").addEventListener("click", ()=>openSongDlg(null));
+
+  // propuneri
+  $("#propsList").addEventListener("click", e=>{
+    const b=e.target.closest("[data-pact]"); if(!b) return;
+    const p=proposals.find(x=>x.id===b.closest("[data-prop]").dataset.prop); if(!p) return;
+    if(b.dataset.pact==="edit") openPropDlg(p);
+    else if(b.dataset.pact==="restore") restoreProp(p);
+  });
+  $("#propsList").addEventListener("change", e=>{
+    const r=e.target.closest("input[type=radio]"); if(!r) return;
+    voteProp(r.closest("[data-prop]").dataset.prop, r.value);
+  });
+  $("#openAddProp").addEventListener("click", ()=>openPropDlg(null));
+  $("#propArchToggle").addEventListener("click", ()=>{ showPropArchive=!showPropArchive; renderProps(); window.scrollTo({top:0}); });
+  $("#savePropBtn").addEventListener("click", saveProp);
+  $("#propArchFromDlg").addEventListener("click", async ()=>{
+    const p=proposals.find(x=>x.id===propEditId); if(!p) return;
+    await archiveProp(p); $("#propDlg").close();
+  });
   $("#archToggle").addEventListener("click", ()=>{ showArchive=!showArchive; renderSongs(); window.scrollTo({top:0}); });
 
   // fereastra de piesă

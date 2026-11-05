@@ -1,6 +1,6 @@
-# Ghid — Trupa (Setlist & Calendar)
+# STRVB — ghid
 
-Aplicația e un singur fișier: **`index.html`**. Ține datele partajate între toți membrii printr-un proiect **Firebase** (gratis, fără card). Mai jos: ce face fiecare parte a aplicației, apoi pașii de configurare și de publicare.
+Aplicația e un singur fișier: **`index.html`**. Ține datele partajate între toți membrii printr-un proiect **Firebase** (gratis, fără card). Ghidul scurt pentru trupă, cu capturi de ecran, e în **`STRVB-ghid-rapid.pdf`**. Mai jos: ce face fiecare parte a aplicației, apoi pașii de configurare și de publicare.
 
 ---
 
@@ -9,24 +9,24 @@ Aplicația e un singur fișier: **`index.html`**. Ține datele partajate între 
 ### Login
 La deschidere, fiecare alege din listă **cine este** și pune **parola**. Userii și parolele sunt în tabelul de la final. După login, dispozitivul ține minte cine ești (până apeși „Ieși").
 
+### Panou trupă (doar de citit)
+- **Următoarea repetiție:** data, ora, locul și cine a anunțat că nu poate veni.
+- **Cine nu poate veni:** calendarul lunii; o bulină cu inițială într-o zi înseamnă că omul acela **nu poate** atunci. **Rep** / **Conc** / **Înt** marchează repetițiile, concertele și întâlnirile.
+- **Ce urmează:** programările viitoare.
+
 ### Piese
-- **Adaugă o piesă:** completezi **Titlu**, **Artist** și, opțional, un **Link** către piesă (YouTube, Spotify, Google Drive — orice adresă). Apeși „Adaugă piesa". Piesa apare la toți.
-- Pe fiecare piesă, butonul **↗ Deschide link** deschide adresa pusă la piesă.
-- **Vot** (dropdown, per persoană): 👍 „O facem" sau 👎 „N-o facem". E părerea ta; fiecare are votul lui. Sus pe piesă vezi totalul: câți 👍 și câți 👎.
-- **Studiat** (dropdown, per persoană): Da/Nu — dacă tu ai studiat piesa.
-- **Pot cânta** (dropdown, per persoană): Da/Nu — dacă tu o poți cânta.
-- **Track-uri** (dropdown, la nivel de **trupă**): Da/Nu — dacă aveți track-urile scoase pentru piesa aia. E o singură valoare comună (de obicei o setează Nicu); oricine o poate schimba.
-- **Trupa — …** : dacă apeși pe rândul ăsta, se desface și vezi exact ce a ales fiecare membru (vot, studiat, cântă), cu culoarea fiecăruia.
-- **Șterge piesa:** oricine poate șterge o piesă, pentru toți.
+- Piesele vin din aplicația **Măsura** (cu ordinea concertului activ și măsurile pe părți; titlul, BPM-ul și structura lor se schimbă doar acolo) sau se adaugă manual cu **Adaugă o piesă**: nume, artist (opțional), BPM, link audio și structura (părțile piesei, în ordine).
+- **Ascultă** deschide linkul; **Versuri** le arată și le editează.
+- **Editează** schimbă datele piesei și, tot de acolo, **arhivează** piesa. Nimic nu se șterge: **Arhivă** ține piesele scoase din repertoriu, iar **Readu în piese** le aduce înapoi.
 
-### Calendar (tab-ul „Calendar")
-- **Zilele mele ocupate:** apeși pe o zi din calendar ca s-o marchezi indisponibilă (apeși din nou ca s-o scoți). Astea le văd toți pe pagina Acasă.
-- **Adaugă repetiție / concert:** alegi tipul (Repetiție sau Concert), data și, opțional, ora și locul. Apare în calendar la toți. Tot de aici le poți și șterge.
+### Propuneri
+- **Propune o piesă:** numele, un link (YouTube sau orice site), opțional BPM-ul și gama. Cel care propune primește automat votul „Îmi place".
+- Fiecare membru votează **Îmi place**, **Cum zic și ceilalți** sau **Prefer să nu**. Pe card se vede cine a votat ce, cine a propus piesa, când, și cine a modificat-o ultimul.
+- **Editează** schimbă datele propunerii și de acolo o arhivezi; arhiva păstrează și voturile.
 
-### Acasă
-- **Următoarea repetiție:** bannerul de sus arată automat cea mai apropiată repetiție viitoare.
-- **Disponibilitate trupă:** un calendar unde fiecare membru are o culoare; punctele colorate dintr-o zi arată **cine NU e disponibil** în acea zi. Așa vedeți rapid în ce zile să nu puneți repetiții sau concerte.
-- **Ce urmează:** lista cu repetițiile și concertele care vin.
+### Calendarul tău (aici modifici)
+- **Zilele în care nu poți:** apeși pe o zi ca s-o marchezi „nu pot" (roșie); apeși din nou ca s-o eliberezi. Zilele trecute nu se mai pot schimba.
+- **Programează:** alegi tipul (Repetiție, Concert sau Întâlnire), data și, opțional, ora și locul. Dacă cineva nu poate în ziua aleasă, apare un avertisment. Programările se pot șterge din lista de sub formular.
 
 Toate datele se sincronizează **live** între toate telefoanele/laptopurile, în câteva secunde.
 
@@ -75,10 +75,10 @@ Toate datele se sincronizează **live** între toate telefoanele/laptopurile, î
 
 ## Publicare — pe GitHub (GitHub Pages)
 1. Cont pe **https://github.com** (gratis).
-2. **New repository** -> nume (ex: `trupa`) -> poate fi Private -> **Create**.
+2. **New repository** -> nume (ex: `STRVB`) -> poate fi Private -> **Create**.
 3. **Add file -> Upload files** -> trage `index.html` -> **Commit changes**.
 4. **Settings -> Pages** -> Source: **Deploy from a branch** -> Branch: **main** / **/(root)** -> **Save**.
-5. După ~1 min, apare linkul: `https://NUMELE-TAU.github.io/trupa/`. Ăsta e linkul pentru trupă.
+5. După ~1 min, apare linkul: `https://NUMELE-TAU.github.io/STRVB/`. Ăsta e linkul pentru trupă.
 
 > Repo Private -> site-ul tot e public la acel link (greu de ghicit). Pentru o trupă e ok.
 > Pe telefon, din browser, „Adaugă pe ecranul principal" îl pune ca o iconiță de aplicație.
