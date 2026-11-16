@@ -242,6 +242,13 @@
   .vot-col.da .lbl b{color:var(--gold-light)} .vot-col.nu .lbl b{color:var(--red-light)} .vot-col.mijloc .lbl b{color:var(--ivory)}
   .vot-col .cine{display:flex;flex-wrap:wrap;gap:3px;margin-top:7px;min-height:17px}
   .vot-col .cine .bulina{width:17px;height:17px;font-size:10.5px}
+  .titlu-ord{display:flex;align-items:flex-start;gap:10px;min-width:0}
+  .ord-sel{flex:0 0 auto;appearance:none;-webkit-appearance:none;border:none;cursor:pointer;height:30px;min-width:46px;border-radius:7px;
+    padding:0 20px 0 9px;background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111' stroke-width='1.8'/%3E%3C/svg%3E") no-repeat right 7px center;
+    color:var(--ink);font-weight:800;font-size:14px;font-variant-numeric:tabular-nums;margin-top:1px}
+  .ord-sel:focus-visible{outline:2px solid var(--gold-light);outline-offset:2px}
+  .ord-sel:disabled{cursor:default;opacity:.85}
+  .ord-sel option{background:var(--card);color:var(--text)}
   .votul-meu{margin-top:12px}
   .votul-meu .fld-label{margin-bottom:6px}
   .seg.vot label{font-size:13.5px;padding:8px 4px}
@@ -600,7 +607,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/fireba
 import { getAuth, signInAnonymously, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 import { getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc,
-  onSnapshot, query, orderBy, deleteField, arrayUnion, arrayRemove }
+  onSnapshot, query, orderBy, deleteField, arrayUnion, arrayRemove, writeBatch }
   from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 /* ---------- membri (poartă de acces din interfață) ---------- */
@@ -1113,7 +1120,7 @@ async function saveLyrics(){
 
 /* ---------- PROPUNERI ---------- */
 function renderProps(){
-  const act = proposals.filter(p=>!p.archived), arch = proposals.filter(p=>p.archived);
+  const act = activePropsOrdered(), arch = proposals.filter(p=>p.archived);
   const list = $("#propsList");
   $("#propArchToggle").textContent = showPropArchive ? "Înapoi la propuneri" : `Arhivă (${arch.length})`;
   $("#openAddProp").style.display = showPropArchive ? "none" : "";
@@ -1127,12 +1134,38 @@ function renderProps(){
   } else {
     $("#propsHead").textContent = "Propuneri";
     $("#propsCount").textContent = act.length || "";
-    list.innerHTML = act.length ? act.map(p=>propCard(p,false)).join("")
+    list.innerHTML = act.length ? act.map((p,i)=>propCard(p,false,i+1,act.length)).join("")
       : `<div class="empty-state">Nicio propunere încă. Apasă „Propune o piesă”.</div>`;
   }
 }
 function whenRo(ts){ const d=new Date(ts); return `${d.getDate()} ${MONTHS_SHORT[d.getMonth()]}`; }
-function propCard(p, archived){
+/* ordinea comună: câmpul `order` (1, 2, 3…); propunerile vechi fără ordine vin la coadă, cele mai noi primele */
+function activePropsOrdered(){
+  const act = proposals.filter(p=>!p.archived);
+  const cuOrd = act.filter(p=>Number.isFinite(p.order)).sort((a,b)=>a.order-b.order || (b.createdAt||0)-(a.createdAt||0));
+  const faraOrd = act.filter(p=>!Number.isFinite(p.order)).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+  return [...cuOrd, ...faraOrd];
+}
+// scrie order = 1..n pentru lista dată (doar unde s-a schimbat) + alte câmpuri, într-un singur batch
+async function writePropOrder(ids, extra={}){
+  const batch = writeBatch(db); let n=0;
+  ids.forEach((id,i)=>{
+    const p = proposals.find(x=>x.id===id);
+    const upd = { ...(extra[id]||{}) };
+    if(!p || p.order!==i+1) upd.order = i+1;
+    if(Object.keys(upd).length){ batch.update(doc(db,"proposals",id), upd); n++; }
+  });
+  Object.entries(extra).forEach(([id,upd])=>{ if(!ids.includes(id)){ batch.update(doc(db,"proposals",id), upd); n++; } });
+  if(n) await batch.commit();
+}
+async function moveProp(id, pos){
+  const ids = activePropsOrdered().map(p=>p.id).filter(x=>x!==id);
+  pos = Math.max(1, Math.min(pos, ids.length+1));
+  ids.splice(pos-1, 0, id);
+  try{ await writePropOrder(ids); toast(`Mutată pe poziția ${pos}`); }
+  catch(e){ toast("Ordinea nu s-a salvat: "+(e.code||e.message)); renderProps(); }
+}
+function propCard(p, archived, pos, total){
   const href=safeHref(p.link);
   const votes=p.votes||{};
   const who = k => ORDER.filter(u=>votes[u]===k);
@@ -1147,7 +1180,12 @@ function propCard(p, archived){
   const mine = votes[me]||"";
   return `<article class="song${archived?" arhivata":""}" data-prop="${esc(p.id)}">
     <div class="song-top">
-      <h3>${esc(p.title)}</h3>
+      <div class="titlu-ord">
+        ${archived ? "" : `<select class="ord-sel" aria-label="Poziția în listă"${total<2?" disabled":""}>
+          ${Array.from({length:total},(_,i)=>`<option value="${i+1}"${i+1===pos?" selected":""}>${i+1}</option>`).join("")}
+        </select>`}
+        <h3>${esc(p.title)}</h3>
+      </div>
       ${meta?`<span class="bpm">${meta}</span>`:""}
     </div>
     <div class="prop-meta">
@@ -1200,7 +1238,9 @@ async function saveProp(){
       await updateDoc(doc(db,"proposals",propEditId), { title, link, key, bpm, editedBy:me, editedAt:Date.now() });
       toast("Propunere salvată");
     } else {
-      await addDoc(collection(db,"proposals"), { title, link, key, bpm, votes:{ [me]:"da" }, archived:false,
+      const ids = activePropsOrdered().map(p=>p.id);
+      if(proposals.some(p=>!p.archived && !Number.isFinite(p.order))) await writePropOrder(ids);  // fixează ordinea veche
+      await addDoc(collection(db,"proposals"), { title, link, key, bpm, votes:{ [me]:"da" }, archived:false, order: ids.length+1,
         proposedBy:me, createdAt:Date.now(), editedBy:me, editedAt:Date.now() });
       toast("Propunere adăugată");
     }
@@ -1214,13 +1254,15 @@ async function voteProp(id, value){
 }
 async function archiveProp(p){
   try{
-    await updateDoc(doc(db,"proposals",p.id), { archived:true, archivedBy:me, archivedAt:Date.now() });
+    await writePropOrder(activePropsOrdered().map(x=>x.id).filter(x=>x!==p.id),
+      { [p.id]: { archived:true, archivedBy:me, archivedAt:Date.now(), order:deleteField() } });
     toast("Propunere mutată în arhivă");
   }catch(e){ toast("Nu s-a arhivat: "+(e.code||e.message)); }
 }
 async function restoreProp(p){
   try{
-    await updateDoc(doc(db,"proposals",p.id), { archived:false, archivedBy:deleteField(), archivedAt:deleteField() });
+    await writePropOrder([...activePropsOrdered().map(x=>x.id), p.id],
+      { [p.id]: { archived:false, archivedBy:deleteField(), archivedAt:deleteField() } });
     toast("Readusă în propuneri");
   }catch(e){ toast("Nu s-a readus: "+(e.code||e.message)); }
 }
@@ -1300,6 +1342,8 @@ function wireEvents(){
     else if(b.dataset.pact==="restore") restoreProp(p);
   });
   $("#propsList").addEventListener("change", e=>{
+    const sel=e.target.closest("select.ord-sel");
+    if(sel){ moveProp(sel.closest("[data-prop]").dataset.prop, Number(sel.value)); return; }
     const r=e.target.closest("input[type=radio]"); if(!r) return;
     voteProp(r.closest("[data-prop]").dataset.prop, r.value);
   });
