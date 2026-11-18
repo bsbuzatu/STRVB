@@ -39,7 +39,7 @@
     --k:#E8C56A; --a:#F0E6D2; --n:#D08A4A; --r:#D65B4B; --b:#A8AFBB;
     --display:'Fraunces',Georgia,'Times New Roman',serif;
     --sans:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-    --nav-h:68px;
+    --nav-h:76px;
     /* cusătură în cruciuliță: romburi roșii, cruci aurii */
     --cusatura:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='21' shape-rendering='crispEdges'%3E%3Cpath fill='%23B8372B' d='M15 0h3v3h-3zM12 3h3v3h-3zM18 3h3v3h-3zM9 6h3v3h-3zM21 6h3v3h-3zM6 9h3v3h-3zM24 9h3v3h-3zM9 12h3v3h-3zM21 12h3v3h-3zM12 15h3v3h-3zM18 15h3v3h-3zM15 18h3v3h-3zM15 9h3v3h-3zM33 0h3v3h-3zM33 18h3v3h-3z'/%3E%3Cpath fill='%23D9AD4F' d='M15 6h3v3h-3zM12 9h3v3h-3zM18 9h3v3h-3zM15 12h3v3h-3zM33 6h3v3h-3zM33 9h3v3h-3zM33 12h3v3h-3zM30 9h3v3h-3zM0 9h3v3h-3z'/%3E%3C/svg%3E");
   }
@@ -110,11 +110,11 @@
   .who{display:flex;align-items:center;gap:2px}
   .chip-user{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600}
 
-  nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;
+  nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(5,1fr);gap:2px;
     padding:8px 8px calc(8px + env(safe-area-inset-bottom,0px));
     background:rgba(11,10,9,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
   nav.tabs button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 2px;border-radius:12px;
-    color:var(--muted);font-size:11.5px;font-weight:600;line-height:1.2;white-space:nowrap}
+    color:var(--muted);font-size:11px;font-weight:600;line-height:1.15;text-align:center}
   nav.tabs button.active{background:var(--gold);color:var(--ink)}
 
   section{display:none} section.active{display:block}
@@ -253,6 +253,44 @@
   .votul-meu .fld-label{margin-bottom:6px}
   .seg.vot label{font-size:13.5px;padding:8px 4px}
 
+  /* ---------- chirie ---------- */
+  .rent-home{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border-radius:14px;padding:14px 16px;margin-bottom:34px;
+    background:var(--card);box-shadow:inset 0 0 0 1px rgba(232,200,120,.12)}
+  .rent-home .tx{flex:1;min-width:0;font-size:14.5px;line-height:1.4}
+  .rent-home .tx b{display:block;font-family:var(--display);font-weight:600;font-size:17px;margin-bottom:2px}
+  .rent-home .go{font-size:13.5px;font-weight:700;white-space:nowrap}
+  .rent-home.due{background:var(--red);color:#fff;box-shadow:none}
+  .rent-home.wait{background:transparent;box-shadow:inset 0 0 0 1.5px var(--ivory)}
+  .rent-home.todo{background:var(--gold);color:var(--ink);box-shadow:none}
+  .rent-home.ok .tx b{color:var(--gold-light)}
+  .luni{display:flex;flex-wrap:wrap;gap:6px}
+  .luni label{position:relative;border-radius:999px;padding:8px 13px;font-size:14px;font-weight:600;box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer}
+  .luni label.due{box-shadow:inset 0 0 0 1.5px var(--red-light)}
+  .luni input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+  .luni label:has(input:checked){background:var(--gold);color:var(--ink);box-shadow:none}
+  .luni label:has(input:focus-visible){outline:2px solid var(--gold);outline-offset:2px}
+  .pend-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+  .pend{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:12px;padding:12px 14px}
+  .pend .info{flex:1;min-width:0}
+  .pend .info .t{font-weight:600}
+  .pend .info .s{font-size:14px;color:var(--muted)}
+  .pend .btn{width:auto;padding:9px 14px;font-size:14px}
+  .rent-grid{display:grid;grid-template-columns:62px repeat(4,1fr);gap:4px;margin-top:14px}
+  .rent-h{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;font-weight:600;color:var(--muted);padding-bottom:4px;min-width:0}
+  .rent-h.eu{color:var(--gold-light)}
+  .rent-m{display:flex;flex-direction:column;justify-content:center;font-size:13.5px;font-weight:600;line-height:1.15;padding-left:2px}
+  .rent-m small{font-size:11px;font-weight:500;color:var(--faint)}
+  .rent-m.cur{color:var(--gold-light)}
+  .rc{min-height:48px;min-width:0;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+    font-size:11.5px;font-weight:700;line-height:1.15;text-align:center;padding:4px 2px;background:var(--card)}
+  .rc .d{font-size:11px;font-weight:500;opacity:.85}
+  .rc.ok{background:var(--gold);color:var(--ink)}
+  .rc.wait{background:transparent;box-shadow:inset 0 0 0 1.5px var(--ivory);color:var(--ivory)}
+  .rc.due{background:var(--red);color:#fff}
+  .rc.none{background:transparent;box-shadow:inset 0 0 0 1px var(--line);color:var(--faint)}
+  button.rc:hover{filter:brightness(1.12)}
+  .legend.pastile .rc{min-height:0;display:inline-flex;padding:3px 8px;border-radius:5px;font-size:11px}
+
   /* ---------- ferestre ---------- */
   dialog.sheet{border:none;border-radius:20px;background:var(--card);color:var(--text);padding:0;
     width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 32px);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.7),inset 0 0 0 1px rgba(232,200,120,.1)}
@@ -309,7 +347,7 @@
     .app{padding-bottom:60px}
     nav.tabs{position:sticky;top:12px;bottom:auto;display:inline-grid;grid-auto-flow:column;grid-template-columns:none;
       border:none;border-radius:14px;padding:5px;background:rgba(33,28,21,.96);box-shadow:inset 0 0 0 1px var(--line);margin:6px 0 4px}
-    nav.tabs button{flex-direction:row;gap:8px;padding:9px 16px;font-size:14.5px;border-radius:10px}
+    nav.tabs button{flex-direction:row;gap:8px;padding:9px 14px;font-size:14.5px;border-radius:10px;white-space:nowrap}
     .toast{bottom:28px}
     h1{font-size:36px}
   }
@@ -354,6 +392,9 @@
     <button data-view="props">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg>
       Propuneri</button>
+    <button data-view="rent">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 10v4M18 10v4"/></svg>
+      Chirie</button>
     <button data-view="cal">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
       Calendarul tău</button>
@@ -364,6 +405,7 @@
     <div class="page-head"><h1>Panou trupă</h1><span class="tag">doar de citit</span></div>
 
     <div id="nextRehearsal"></div>
+    <div id="homeRent"></div>
 
     <div class="block">
       <h2>Cine nu poate veni</h2>
@@ -408,6 +450,44 @@
       <button class="btn ghost" id="propArchToggle">Arhivă</button>
     </div>
     <div id="propsList" class="songs"></div>
+  </section>
+
+  <!-- CHIRIE -->
+  <section id="view-rent">
+    <div class="page-head"><h1>Chirie</h1><span class="tag">100 lei / lună</span></div>
+    <p class="hint" id="rentIntro" style="margin:-4px 0 22px"></p>
+
+    <div class="block" id="rentPendingBlock">
+      <h2>De confirmat</h2>
+      <div class="pend-list" id="rentPending"></div>
+    </div>
+
+    <div class="card" id="rentReport">
+      <h2>Semnalează o plată</h2>
+      <div class="form">
+        <div>
+          <div class="fld-label">Pentru ce luni <small style="font-weight:400;color:var(--faint)">(poți alege mai multe)</small></div>
+          <div class="luni" id="rentMonths"></div>
+        </div>
+        <div>
+          <label class="fld" for="rentDate">Când i-ai dat banii lui Raul</label>
+          <input id="rentDate" class="control" type="date">
+        </div>
+        <button class="btn" id="rentReportBtn">Am plătit</button>
+        <div class="err" id="rentErr" role="alert"></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Situația pe luni</h2>
+      <p class="hint" id="rentGridHint" style="margin-top:6px"></p>
+      <div class="rent-grid" id="rentGrid"></div>
+      <div class="legend pastile">
+        <span class="it"><span class="rc ok">✓</span> confirmat de Raul</span>
+        <span class="it"><span class="rc wait">așteaptă</span> semnalat, neconfirmat</span>
+        <span class="it"><span class="rc due">restant</span> neplătit</span>
+      </div>
+    </div>
   </section>
 
   <!-- CALENDARUL TĂU -->
@@ -647,6 +727,12 @@ const EV_TYPES = {
 };
 function evType(e){ return EV_TYPES[e.type] || EV_TYPES.repetitie; }
 
+/* chiria: toți plătesc lui Raul, din septembrie 2026 */
+const RENT_PAYEE = "Raul";
+const RENT_AMOUNT = 100;
+const RENT_START = "2026-09";
+const PAYERS = ORDER.filter(u=>u!==RENT_PAYEE);
+
 /* voturile la propuneri */
 const VOTES = { da:"Îmi place", mijloc:"Cum zic și ceilalți", nu:"Prefer să nu" };
 
@@ -673,6 +759,7 @@ let showArchive = false;                       // tab Piese: repertoriu sau arhi
 let proposals = [], showPropArchive = false, propEditId = null;   // tab Propuneri
 let editId = null, draft = [], selIdx = -1;    // fereastra de piesă
 let lyricsId = null;                           // fereastra de versuri
+let rent = [];                                 // tab Chirie: un document per membru și lună
 
 /* ---------- helpers ---------- */
 const $ = s => document.querySelector(s);
@@ -716,6 +803,26 @@ function masuraSummary(s){
   const open=bars.filter(b=>b===null).length;
   return `Din Măsura · ${total} ${total===1?"măsură":"măsuri"}${open?` + ${open===1?"o parte deschisă":open+" părți deschise"}`:""}`;
 }
+/* luni de chirie: „2026-11” */
+function monthKey(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0"); }
+function curMonthKey(){ return monthKey(new Date()); }
+function monthLabel(k){ const [y,m]=k.split("-").map(Number); return `${MONTHS[m-1]} ${y}`; }
+function shortDate(ds){ if(!ds) return ""; const d=parseYmd(ds); return `${d.getDate()} ${MONTHS_SHORT[d.getMonth()]}`; }
+/* din septembrie 2026 până la luna curentă + 2 */
+function rentMonths(){
+  const n=new Date(), end=monthKey(new Date(n.getFullYear(), n.getMonth()+2, 1));
+  const [y0,m0]=RENT_START.split("-").map(Number);
+  const out=[]; let d=new Date(y0,m0-1,1);
+  while(monthKey(d)<=end){ out.push(monthKey(d)); d=new Date(d.getFullYear(), d.getMonth()+1, 1); }
+  return out;
+}
+function rentOf(u,k){ return rent.find(r=>r.member===u && r.month===k); }
+function rentDue(u){ const c=curMonthKey(); return rentMonths().filter(k=>k<=c && !rentOf(u,k)); }
+function rentPending(u){ return rent.filter(r=>r.status==="pending" && (!u || r.member===u))
+  .sort((a,b)=>(a.month).localeCompare(b.month) || ORDER.indexOf(a.member)-ORDER.indexOf(b.member)); }
+function lunile(keys){ return keys.map(monthLabel).join(", "); }
+function lei(n){ return `${n} lei`; }
+
 function partClass(p){
   const k=(p||"").toLowerCase();
   if(k.startsWith("refren")) return "refren";
@@ -792,6 +899,13 @@ function subscribeAll(){
     if (currentView()==="cal")  renderCalendar();
   }, err=>console.warn("events:",err));
 
+  onSnapshot(collection(db,"rent"), snap=>{
+    rent = snap.docs.map(d=>({id:d.id, ...d.data()}));
+    if (!me) return;
+    if (currentView()==="home") renderHome();
+    if (currentView()==="rent") renderRent();
+  }, err=>console.warn("rent:",err));
+
   onSnapshot(collection(db,"availability"), snap=>{
     availability = {};
     snap.docs.forEach(d=> availability[d.id] = (d.data().dates)||[]);
@@ -818,7 +932,7 @@ async function seedSongs(){
    RENDER
    ============================================================ */
 function currentView(){ const a=document.querySelector("nav.tabs button.active"); return a?a.dataset.view:"home"; }
-function renderAll(){ renderHome(); renderSongs(); renderProps(); renderCalendar(); }
+function renderAll(){ renderHome(); renderSongs(); renderProps(); renderRent(); renderCalendar(); }
 function switchView(name){
   document.querySelectorAll("nav.tabs button").forEach(x=>x.classList.toggle("active", x.dataset.view===name));
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
@@ -826,6 +940,7 @@ function switchView(name){
   if(name==="home") renderHome();
   if(name==="songs") renderSongs();
   if(name==="props") renderProps();
+  if(name==="rent") renderRent();
   if(name==="cal") renderCalendar();
   window.scrollTo({top:0});
 }
@@ -855,6 +970,7 @@ function renderHome(){
       <button class="btn ghost" data-goto="cal">Programează una</button>
     </div>`;
   }
+  renderHomeRent();
   // legenda membrilor
   $("#legendHome").innerHTML = ORDER.map(u=>
     `<span class="it">${bulina(u,null,"lg")}${esc(firstName(u))}</span>`).join("");
@@ -865,6 +981,139 @@ function renderHome(){
   const up = events.filter(e=>e.date>=t).slice(0,8);
   $("#homeEvents").innerHTML = up.length ? up.map(e=>evRow(e,false)).join("")
     : `<div class="empty-state">Nimic programat momentan.</div>`;
+}
+
+/* ---------- CHIRIE pe panou: ce ai tu de făcut ---------- */
+function renderHomeRent(){
+  const box=$("#homeRent");
+  const card=(cls,title,text,go)=>`<button type="button" class="rent-home ${cls}" data-goto="rent">
+    <span class="tx"><b>${title}</b>${text}</span><span class="go">${go} ›</span></button>`;
+  if(me===RENT_PAYEE){
+    const p=rentPending(), due=PAYERS.map(u=>[u,rentDue(u)]).filter(([,d])=>d.length);
+    const restante = due.length ? "Restanțe: "+due.map(([u,d])=>`${esc(firstName(u))} (${d.map(k=>MONTHS_SHORT[+k.slice(5)-1]).join(", ")})`).join(" · ") : "";
+    box.innerHTML = p.length
+      ? card("todo", `Chirie: ${p.length===1?"o plată de confirmat":p.length+" plăți de confirmat"}`,
+          [rentWho(p), restante].filter(Boolean).join("<br>"), "Confirmă")
+      : card("ok","Chirie: nimic de confirmat", restante || "Toată lumea e la zi.", "Vezi");
+    return;
+  }
+  const due=rentDue(me), p=rentPending(me);
+  if(due.length) box.innerHTML = card("due", `Chirie: ai de plătit ${lei(due.length*RENT_AMOUNT)}`, lunile(due), "Semnalează");
+  else if(p.length) box.innerHTML = card("wait","Chirie: așteaptă confirmarea lui Raul", lunile(p.map(r=>r.month)), "Vezi");
+  else box.innerHTML = card("ok","Chirie: ești la zi", "Mulțumim!", "Vezi");
+}
+function rentWho(list){
+  const by={}; list.forEach(r=>(by[r.member]=by[r.member]||[]).push(r.month));
+  return Object.entries(by).map(([u,ks])=>`${esc(firstName(u))}: ${ks.map(k=>MONTHS_SHORT[+k.slice(5)-1]).join(", ")}`).join(" · ");
+}
+
+/* ---------- CHIRIE ---------- */
+function renderRent(){
+  const isPayee = me===RENT_PAYEE, months=rentMonths(), cur=curMonthKey();
+  $("#rentIntro").innerHTML = isPayee
+    ? `Ceilalți îți semnalează aici când ți-au dat chiria. Tu confirmi că ai primit banii. Apasă pe o căsuță ca să confirmi sau să retragi o confirmare.`
+    : `Fiecare îi dă lui Raul <b>${lei(RENT_AMOUNT)} pe lună</b>. Semnalezi aici când ai plătit, iar Raul confirmă că a primit.`;
+
+  // Raul: lista de confirmat
+  const pend = isPayee ? rentPending() : [];
+  $("#rentPendingBlock").style.display = isPayee ? "" : "none";
+  if(isPayee){
+    $("#rentPending").innerHTML = pend.length
+      ? pend.map(r=>`<div class="pend">${bulina(r.member,null,"lg")}
+          <div class="info"><div class="t">${esc(firstName(r.member))} · ${monthLabel(r.month)}</div>
+          <div class="s">${lei(r.amount||RENT_AMOUNT)}, plătit ${shortDate(r.paidOn)}</div></div>
+          <button class="btn" data-rconfirm="${esc(r.id)}">Am primit</button></div>`).join("")
+        + (pend.length>1?`<button class="btn ghost" id="rentConfirmAll" style="margin-top:4px">Confirmă toate (${pend.length})</button>`:"")
+      : `<div class="empty-state">Nicio plată nu așteaptă confirmarea ta.</div>`;
+  }
+
+  // semnalare: doar cei care plătesc
+  $("#rentReport").style.display = isPayee ? "none" : "";
+  if(!isPayee){
+    const keep = new Set([...document.querySelectorAll("#rentMonths input:checked")].map(i=>i.value));
+    const free = months.filter(k=>!rentOf(me,k));
+    if(!keep.size && free.length && free[0]<=cur) keep.add(free[0]);    // implicit: cea mai veche lună neplătită
+    $("#rentMonths").innerHTML = free.length
+      ? free.map(k=>`<label class="${k<=cur?"due":""}"><input type="checkbox" value="${k}"${keep.has(k)?" checked":""}>${monthLabel(k)}</label>`).join("")
+      : `<span class="hint">Ai semnalat toate lunile disponibile.</span>`;
+    const d=$("#rentDate"); d.max=todayYmd(); if(!d.value) d.value=todayYmd();
+    updateRentBtn();
+  }
+
+  // tabelul lunilor
+  $("#rentGridHint").innerHTML = isPayee
+    ? "Sub fiecare lună: cât ai primit confirmat."
+    : "Dacă ai semnalat ceva greșit, apasă pe căsuța ta „așteaptă” ca s-o anulezi.";
+  let html = `<div></div>` + PAYERS.map(u=>`<div class="rent-h${u===me?" eu":""}">${bulina(u)}<span>${esc(firstName(u))}</span></div>`).join("");
+  months.forEach(k=>{
+    const [y,m]=k.split("-").map(Number);
+    const got = PAYERS.filter(u=>(rentOf(u,k)||{}).status==="confirmed").length*RENT_AMOUNT;
+    html += `<div class="rent-m${k===cur?" cur":""}">${MONTHS_SHORT[m-1]}<small>${isPayee?`${got}/${PAYERS.length*RENT_AMOUNT}`:y}</small></div>`;
+    PAYERS.forEach(u=>{
+      const r=rentOf(u,k);
+      let cls="none", inner="—", act="";
+      if(r && r.status==="confirmed"){ cls="ok"; inner=`✓<span class="d">${shortDate(r.paidOn)}</span>`; if(isPayee) act="unconfirm"; }
+      else if(r){ cls="wait"; inner=`așteaptă<span class="d">${shortDate(r.paidOn)}</span>`; if(isPayee) act="confirm"; else if(u===me) act="cancel"; }
+      else if(k<=cur){ cls="due"; inner="restant"; }
+      const lbl=`${firstName(u)}, ${monthLabel(k)}: ${{ok:"confirmat",wait:"așteaptă confirmarea",due:"restant",none:"încă nu e cazul"}[cls]}`;
+      html += act
+        ? `<button type="button" class="rc ${cls}" data-ract="${act}" data-rid="${esc(r.id)}" aria-label="${esc(lbl)}">${inner}</button>`
+        : `<div class="rc ${cls}" title="${esc(lbl)}">${inner}</div>`;
+    });
+  });
+  $("#rentGrid").innerHTML = html;
+}
+function rentChecked(){ return [...document.querySelectorAll("#rentMonths input:checked")].map(i=>i.value); }
+function updateRentBtn(){
+  const n=rentChecked().length, b=$("#rentReportBtn");
+  b.textContent = n ? `Am plătit ${lei(n*RENT_AMOUNT)} · ${n===1?"o lună":n+" luni"}` : "Alege luna";
+  b.disabled = !n;
+}
+async function reportRent(){
+  const months=rentChecked(), paidOn=$("#rentDate").value, errEl=$("#rentErr");
+  errEl.textContent="";
+  if(!months.length){ errEl.textContent="Alege cel puțin o lună."; return; }
+  if(!paidOn){ errEl.textContent="Alege data plății."; return; }
+  if(paidOn>todayYmd()){ errEl.textContent="Data plății nu poate fi în viitor."; return; }
+  const btn=$("#rentReportBtn"); btn.disabled=true;
+  try{
+    const batch=writeBatch(db), now=Date.now();
+    months.filter(k=>!rentOf(me,k)).forEach(k=>batch.set(doc(db,"rent",`${me}_${k}`),
+      { member:me, month:k, amount:RENT_AMOUNT, paidOn, status:"pending", reportedAt:now }));
+    await batch.commit();
+    document.querySelectorAll("#rentMonths input:checked").forEach(i=>i.checked=false);
+    toast(months.length===1?"Plată semnalată. Raul o va confirma.":"Plăți semnalate. Raul le va confirma.");
+  }catch(e){ errEl.textContent="Nu s-a salvat: "+(e.code||e.message); }
+  finally{ updateRentBtn(); }
+}
+async function confirmRent(ids){
+  try{
+    const batch=writeBatch(db), now=Date.now();
+    ids.forEach(id=>batch.update(doc(db,"rent",id), { status:"confirmed", confirmedAt:now, confirmedBy:me }));
+    await batch.commit();
+    toast(ids.length===1?"Plată confirmată":`${ids.length} plăți confirmate`);
+  }catch(e){ toast("Nu s-a confirmat: "+(e.code||e.message)); }
+}
+async function rentCellAction(act, id){
+  const r=rent.find(x=>x.id===id); if(!r) return;
+  const cine=firstName(r.member), luna=monthLabel(r.month);
+  try{
+    if(act==="confirm"){
+      if(!confirm(`Confirmi că ai primit ${lei(r.amount||RENT_AMOUNT)} de la ${cine} pentru ${luna}?`)) return;
+      await confirmRent([id]); return;
+    }
+    if(act==="unconfirm"){
+      if(!confirm(`Retragi confirmarea pentru ${cine}, ${luna}? Plata revine la „așteaptă”.`)) return;
+      await updateDoc(doc(db,"rent",id), { status:"pending", confirmedAt:deleteField(), confirmedBy:deleteField() });
+      toast("Confirmare retrasă");
+    }
+    if(act==="cancel"){
+      if(r.member!==me || r.status!=="pending") return;
+      if(!confirm(`Anulezi plata semnalată pentru ${luna}?`)) return;
+      await deleteDoc(doc(db,"rent",id));
+      toast("Semnalare anulată");
+    }
+  }catch(e){ toast("Eroare: "+(e.code||e.message)); }
 }
 
 /* ---------- CALENDARUL TĂU ---------- */
@@ -1322,6 +1571,19 @@ function wireEvents(){
   $("#addEvBtn").addEventListener("click", addEvent);
   $("#evDate").value = todayYmd();
   $("#evDate").addEventListener("change", renderEvWarn);
+
+  // chirie
+  $("#rentMonths").addEventListener("change", updateRentBtn);
+  $("#rentReportBtn").addEventListener("click", reportRent);
+  $("#rentGrid").addEventListener("click", e=>{
+    const b=e.target.closest("button[data-ract]"); if(b) rentCellAction(b.dataset.ract, b.dataset.rid);
+  });
+  $("#rentPending").addEventListener("click", e=>{
+    const b=e.target.closest("[data-rconfirm]"); if(b){ b.disabled=true; confirmRent([b.dataset.rconfirm]); return; }
+    if(e.target.closest("#rentConfirmAll")){
+      const p=rentPending(); if(p.length && confirm(`Confirmi toate cele ${p.length} plăți?`)) confirmRent(p.map(r=>r.id));
+    }
+  });
 
   // piese: acțiunile de pe carduri
   $("#songsList").addEventListener("click", e=>{

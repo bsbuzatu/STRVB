@@ -24,6 +24,12 @@ La deschidere, fiecare alege din listă **cine este** și pune **parola**. Useri
 - Fiecare membru votează **Îmi place**, **Cum zic și ceilalți** sau **Prefer să nu**. Pe card se vede cine a votat ce, cine a propus piesa, când, și cine a modificat-o ultimul.
 - **Editează** schimbă datele propunerii și de acolo o arhivezi; arhiva păstrează și voturile.
 
+### Chirie
+- Fiecare îi dă lui **Raul 100 lei pe lună** pentru sala de repetiții; tabelul pornește din septembrie 2026 și arată până la luna curentă + 2.
+- **Semnalează o plată:** alegi una sau mai multe luni și data în care i-ai dat banii. Plata apare „așteaptă" până o confirmă Raul. Cât e neconfirmată, o poți anula apăsând pe căsuța ta.
+- **Raul** vede lista **De confirmat** și apasă **Am primit** (sau **Confirmă toate**). Din tabel poate confirma sau retrage o confirmare dată din greșeală.
+- **Panou trupă** arată fiecăruia ce are restant sau în așteptare; lui Raul, câte plăți are de confirmat.
+
 ### Calendarul tău (aici modifici)
 - **Zilele în care nu poți:** apeși pe o zi ca s-o marchezi „nu pot" (roșie); apeși din nou ca s-o eliberezi. Zilele trecute nu se mai pot schimba.
 - **Programează:** alegi tipul (Repetiție, Concert sau Întâlnire), data și, opțional, ora și locul. Dacă cineva nu poate în ziua aleasă, apare un avertisment. Programările se pot șterge din lista de sub formular.
